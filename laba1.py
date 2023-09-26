@@ -43,7 +43,7 @@ elif a == 3:
     while max_element in elements:
         elements.remove(max_element)
 
-    print("Список без наибольшего элемента:", elements)
+    print("Список без наибольшего элеменgit initта:", elements)
 
 
 elif a == 4:
