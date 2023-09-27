@@ -26,6 +26,18 @@ if a == 1:
 
 elif a == 2:
     word = input("Введите слово: ")
+    upper_count = 0
+    lower_count = 0
+
+    for char in word:
+        if char.isupper():
+            upper_count += 1
+        elif char.islower():
+            lower_count += 1
+
+    print("Количество пар верхнего регистра:", upper_count // 2)
+    print("Количество пар нижнего регистра:", lower_count // 2)
+    print("Общее количество букв:", len(word))
 
 elif a == 3:
 
