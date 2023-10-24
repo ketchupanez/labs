@@ -1,0 +1,56 @@
+# Вариант 27
+
+print("\t Меню")
+
+print(" 1. Скопировать из файла F1 в файл F2 все строки, в которых есть слова, совпадающие со вторым словом.\n Определить количество цифр в последней строке файла F2")
+print(" 2. Имеется текстовый файл prices.txt с информацией о заказе из магазина. Каждая строка содержит информацию : название, количество единиц, стоимость за ед.\n Определить общую стоимость заказа")
+
+print(" 3. Найти в матрице первый столбец, все элементы которого отрицательны, и среднее арифметическое этих элементов.")
+print(" 4. Напишите программу, демонстрирующую работу try \ except \ finally\n")
+
+def task_1():
+    with open("F1.txt", "w") as f1:
+        while True:
+            a = input("Введите строку (чтобы завершить ввод, введите пустую строку): ")
+            if not a: break
+            f1.write(a + "\n")
+
+    with open("F1.txt", "r") as f1:
+        first_line = f1.readline().strip()
+        print(first_line)
+        second_word = first_line.split()[1]
+
+    with open("F1.txt", "r") as f1, open("F2.txt", "w") as f2:
+        for line in f1:
+            if second_word in line:
+                f2.write(line)
+
+    with open("F2.txt", "r") as f2:
+        lines = f2.readlines()
+        last_line = lines[-1] if lines else ""
+        num_count = sum(1 for char in last_line if char.isdigit())
+
+        print(f"Количество цифр в последней строке в файле F2 = {num_count}")
+
+def task_2():
+    pass
+
+def task_3():
+    pass
+
+
+while True:
+    a = (input("Выберите значение: "))
+
+    if a.isdigit():
+        a = int(a)
+        if a == 1:
+            task_1()
+        elif a == 2:
+            task_2()
+        elif a == 3:
+            task_3()
+      #  elif a == 4:
+      #     task_4()
+    else:
+        print("Вы ввели неверное значение, пожалуйста, повторите ввод.\n")
