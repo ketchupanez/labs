@@ -33,7 +33,25 @@ def task_1():
         print(f"Количество цифр в последней строке в файле F2 = {num_count}")
 
 def task_2():
-    pass
+    final_cost = 0
+
+    with open("prices.txt", "r", encoding="utf-8") as pr:
+        for line in pr:
+            par = line.strip().split()
+
+            if len(par) == 3:
+
+                name = par[0]
+                kolvo = int(par[1])
+                price = int(par[2])
+                print(f"Название: {par[0]}, количество единиц: {par[1]}, стоимость за единицу: {par[2]}$")
+                line_cost = kolvo * price
+                final_cost += line_cost
+            else:
+                print("Неверный формат данных")
+
+    print(f"Общая стоимость: ${final_cost}\n")
+
 
 def task_3():
     pass
