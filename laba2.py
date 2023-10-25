@@ -10,31 +10,49 @@ print(" 4. Напишите программу, демонстрирующую �
 
 #place for functions
 def task_1():
-    a = int(input('Введите нижнюю границу диапазона: '))
-    b = int(input('Введите верхнюю границу диапазона: '))
-    print("Диапазон: [", a, ";", b, "]")
+    def is_prime(n):
+        if n <= 1:
+            return False
+        if n <= 3:
+            return True
+        if n % 2 == 0 or n % 3 == 0:
+            return False
+        i = 5
+        while i * i <= n:
+            if n % i == 0 or n % (i + 2) == 0:
+                return False
+            i += 6
+        return True
+
+    def find_prime_num_in_range(start, end):
+        prime_list = []
+        for num in range(max(2, start), end + 1):
+            if is_prime(num):
+                prime_list.append(num)
+        return prime_list
+
+    try:
+        a = int(input("Введите нижнюю границу диапазона: "))
+        b = int(input("Введите верхнюю границу диапазона: "))
+        print("Диапазон: [", a, ";", b, "]")
+    except ValueError:
+        print("Неверное значение")
 
     while True:
         nums = input("Введите числа в пределах диапазона: ")
-        nums_list = nums.split()
 
         if nums == '0':
             break
-            nums_list = nums.split()
-            for num in nums_list:
-                if a <= int(num) <= b:
-                    print(num)
-                else:
-                    print('Неверное число в диапазоне')
 
+        nums_list = nums.split()
+        for num in nums_list:
+            num = int(num)
+            if a <= num <= b:
+                if is_prime(num):
+                    print( num)
 
-
-    # for i in range(a, b + 1):
-    #     for j in range(2, i):
-    #         if i % j == 0:
-    #             break
-    #     else:
-    #         print(i)
+            else:
+                print(num, 'не находится в указанном диапазоне')
 
 
 def task_2():
