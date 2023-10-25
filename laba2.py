@@ -56,74 +56,88 @@ def task_1():
 
 
 def task_2():
-    final_cost = 0
+    def process_argument(arg):
+        if isinstance(arg, list):
+            # Если аргумент - список
+            product = 1
+            max_value = max(arg)
+            new_list = arg[:]
+            new_list.remove(max_value)
+            return product, new_list
 
-    with open("prices.txt", "r", encoding="utf-8") as file:
-        for line in file:
-            print(line.rstrip())
-            parts_finder = line.split()
+        elif isinstance(arg, dict):
+            # Если аргумент - словарь
+            sorted_values = sorted(arg.values(), reverse=True)
+            top_values = sorted_values[:3]
+            return top_values
 
-            if len(parts_finder) == 3:
-                item_name, quantity, price_per_unit = parts_finder
-                try:
-                    quantity = int(quantity)
-                    price_per_unit = float(price_per_unit.replace(",", "."))
+        elif isinstance(arg, int):
+            # Если аргумент - число
+            digits = [int(digit) for digit in str(arg)]
+            sum_of_digits = sum(digits)
+            return sum_of_digits
 
-                    line_cost = quantity * price_per_unit
-                    final_cost += line_cost  # подсчитываем общую стоимость товаров
-                except ValueError:
-                    print(f"Ошибка в строке {line}")
-                    continue
+        elif isinstance(arg, str):
+            # Если аргумент - строка
+            vowels = "AEIOUaeiou"
+            consonants = "BCDFGHJKLMNPQRSTVWXYZbcdfghjklmnpqrstvwxyz"
+            vowel_count = sum(1 for char in arg if char in vowels)
+            consonant_count = sum(1 for char in arg if char in consonants)
+            words = len(arg.split())
+            return vowel_count, consonant_count, words
 
-            else:
-                print(f"Ошибка в  строке {line} и она не будет подсчитана")
+        else:
+            return "Тип аргумента не поддерживается"
 
-    print(f"Общая стоимость всех товаров в корзине : {final_cost:2f}")
+
+
 
 def task_3():
- while True:
-    try:
-     rows = int(input("Введите количество строк: "))
-     cols = int(input("Введите количество столбцов: "))
+    while True:
+        try:
+            rows = int(input("Введите количество строк: "))
+            cols = int(input("Введите количество столбцов: "))
 
-     if rows > 0 and cols > 0:
-         print("Размерность матрицы: ", rows, "x", cols)
-     else:
-         print("Данные значения не могут быть отрицательными или равными 0, пожалуйста, повторите ввод")
-    except ValueError:
-        print("Введите целые числа для размерности матрицы")
+            if rows > 0 and cols > 0:
+                print("Размерность матрицы: ", rows, "x", cols)
+            else:
+                print("Данные значения не могут быть отрицательными или равными 0, пожалуйста, повторите ввод")
+        except ValueError:
+            print("Введите целые числа для размерности матрицы")
 
-    matrix = []
-    for i in range(rows):
-        row = []
+        matrix = []
+        for i in range(rows):
+            row = []
+            for j in range(cols):
+                while True:
+                    try:
+                        element = int(input(f"Введите элемент [{i}, {j}]: "))
+                        row.append(element)
+                        break  # Выход из цикла while после успешного ввода
+                    except ValueError:
+                        print("Введите целое число для элемента матрицы.")
+            matrix.append(row)
+
+        neg_column = None
         for j in range(cols):
-            row.append(0)
-        matrix.append(row)
+            is_negative_column = all(matrix[i][j] < 0 for i in range(rows))
+            if is_negative_column:
+                neg_column = j
+                break
 
-    for i in range(rows):
-        for j in range(cols):
-            while True:
-                matrix[i][j] = int(input(f"Введите элемент [{i}, {j}]: "))
-                if matrix[i][j] > 0:
-                    break
+        if neg_column is not None:
+            sum_of_elements = sum(matrix[i][neg_column] for i in range(rows))
+            average = sum_of_elements / rows
+            print(f"Первый отрицательный столбец: {neg_column}")
+            print(f"Среднее арифметическое элементов этого столбца: {average}")
+        else:
+            print("В матрице нет столбца, все элементы которого отрицательны.")
 
-        print(matrix[i])
-
-    print("Матрица:")
-    for i in range(rows):
-        for j in range(cols):
-            print(matrix[i][j], end='  ')
-        print()
-
-    #for j in range(cols):
-     #   for i in range(rows):
-
-
-
-
-
-
-
+        print("Матрица:")
+        for i in range(rows):
+            for j in range(cols):
+                print(matrix[i][j], end='  ')
+            print()
 
 
 def task_4():
