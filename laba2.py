@@ -58,7 +58,7 @@ def task_1():
 def task_2():
     def process_argument(arg):
         if isinstance(arg, list):
-            # Если аргумент - список
+            #Если аргумент - список
             product = 1
             max_value = max(arg)
             new_list = arg[:]
