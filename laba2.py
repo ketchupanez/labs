@@ -58,36 +58,57 @@ def task_1():
 def task_2():
     def process_argument(arg):
         if isinstance(arg, list):
-            #Если аргумент - список
             product = 1
+            for i in range(len(arg)):
+                if i % 2 != 0:
+                    product *= arg[i]
+            print("Произведение элементов с нечетными номерами:", product)
+
             max_value = max(arg)
-            new_list = arg[:]
-            new_list.remove(max_value)
-            return product, new_list
+            arg.remove(max_value)
+            print("Новый список после удаления наибольшего элемента:", arg)
 
         elif isinstance(arg, dict):
-            # Если аргумент - словарь
             sorted_values = sorted(arg.values(), reverse=True)
-            top_values = sorted_values[:3]
-            return top_values
+            print("Первые три наибольших значения в словаре:", sorted_values[:3])
 
         elif isinstance(arg, int):
-            # Если аргумент - число
-            digits = [int(digit) for digit in str(arg)]
-            sum_of_digits = sum(digits)
-            return sum_of_digits
+            sum_of_digits = sum([int(digit) for digit in str(arg)])
+            print("Сумма цифр числа:", sum_of_digits)
 
         elif isinstance(arg, str):
-            # Если аргумент - строка
-            vowels = "AEIOUaeiou"
-            consonants = "BCDFGHJKLMNPQRSTVWXYZbcdfghjklmnpqrstvwxyz"
-            vowel_count = sum(1 for char in arg if char in vowels)
-            consonant_count = sum(1 for char in arg if char in consonants)
-            words = len(arg.split())
-            return vowel_count, consonant_count, words
+            vowels = 0
+            consonants = 0
+            words = arg.split()
 
-        else:
-            return "Тип аргумента не поддерживается"
+            for word in words:
+                for char in word:
+                    if char.lower() in 'aeiouаеёиоуыэюя':
+                        vowels += 1
+                    elif char.isalpha():
+                        consonants += 1
+
+            print("Количество гласных в строке:", vowels)
+            print("Количество согласных в строке:", consonants)
+            print("Количество слов в строке:", len(words))
+
+    process_argument([1, 2, 3, 4, 5])
+    process_argument({'a': 10, 'b': 20, 'c': 30, 'd': 40})
+    process_argument(12345)
+    process_argument("люблю маму")
+
+
+
+    # user_input = input("Введите значение: ")
+    #
+    # try:
+    #     user_input = eval(user_input)
+    #
+    #     result = process_argument(user_input)
+    #     print("Результат:", result)
+    #
+    # except Exception as e:
+    #     print("Ошибка ввода:", e)
 
 
 
