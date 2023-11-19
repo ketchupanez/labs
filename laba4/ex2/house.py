@@ -11,8 +11,8 @@ class House:
 
 
     def final_price(self, discount):
-        self._price = self._price * (100 - discount) / 100
-        return self._price
+        final_price = self._price * (100 - discount) / 100
+        return final_price
 
 
 

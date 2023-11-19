@@ -51,9 +51,9 @@ while True:
                         print(f"Баланс: {hm._money}$")
 
                     elif znach == 2:
-                        home1 = ex2.house.House("Дом1",20000, 78)
-                        home2 = ex2.smallHouse.SmallHouse("Дом 2",5000)
-                        home3 = ex2.house.House("Дом 3",50000, 127)
+                        home1 = ex2.house.House("Дом1", 20000, 78)
+                        home2 = ex2.smallHouse.SmallHouse("Дом 2", 5000)
+                        home3 = ex2.house.House("Дом 3", 50000, 127)
 
                         home1.print_info()
                         home2.print_info()
@@ -61,26 +61,19 @@ while True:
 
                         z = int(input("Какой дом вы желаете приобрести? Введите № от 1 до 3\n"))
                         if z == 1:
-                            if hm.buy_house(home1, 5):
-                                hm.make_deal(home1, 20000)
+                                hm.make_deal(home1)
 
                         elif z == 2:
-                            if hm.buy_house(home2, 5):
-                                hm.make_deal(home2, 5000)
+                                hm.make_deal(home2)
 
                         elif z == 3:
-                            if hm.buy_house(home3, 5):
-                                hm.make_deal(home3, 50000)
+                                hm.make_deal(home3)
 
                         else:
                             print("Вы ввели неверное значение, пожалуйста, повторите ввод.\n")
 
-
-
-
                     else:
                         print("Вы ввели неверное значение, пожалуйста, повторите ввод.\n")
-
 
         elif a == 3:
             pass

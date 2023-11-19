@@ -5,19 +5,20 @@ class Human:
 
 
     def buy_house(self, house, discount):
-        if self._money >= house._price:
-            _price = house.final_price(discount)
+        final_price = house.final_price(discount)
+        if self._money >= final_price:
             print("Ожидайте завершения сделки...")
-            return True
+            self._money -= final_price
+            return final_price
         else:
             print("На счету недостаточно средств. Пополните баланс")
-            return False
+            return None
 
-    def make_deal(self, house, _price):
-        if self.buy_house(house, 5):
-            self._money = self._money - _price
+    def make_deal(self, house):
+        final_price = self.buy_house(house, discount=5)
+        if final_price is not None:
             self.current_house = house
-            print(f"Сделка завершена! {self.current_house._area} м^2 дом куплен за {_price}$.")
+            print(f"Сделка завершена! {self.current_house._area} м^2 дом куплен за {final_price}$.")
             print(f"На вашем счету осталось {self._money}$")
 
 
