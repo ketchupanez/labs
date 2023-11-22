@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Black">
-    <option name="sdkUUID" value="57ff5dbe-58e9-47ff-8d76-9a01e418abf5" />
+    <option name="sdkName" value="Python 3.12 (labs)" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11 (labs)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (labs) (2)" project-jdk-type="Python SDK" />
 </project>
