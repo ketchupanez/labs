@@ -9,7 +9,7 @@ class Triangle:
     def square(self):
         p = (self.a + self.b + self.c) / 2
         s = math.sqrt(p * (p - self.a) * (p - self.b) * (p - self.c))
-        print(f"Периметр треугольника: {s}")
+        print(f"Площадь треугольника: {s}")
 
     def perimeter(self):
         p = self.a + self.b + self.c
